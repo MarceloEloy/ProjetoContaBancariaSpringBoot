@@ -2,8 +2,7 @@ package com.Generico.ProjetoBanco.Controllers;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Categoria;
 import com.Generico.ProjetoBanco.Model.ContaBancaria.Categoria;
-import com.Generico.ProjetoBanco.Model.Repositorys.CategoriaRepository;
-import jakarta.validation.Valid;
+import com.Generico.ProjetoBanco.Repositorys.CategoriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

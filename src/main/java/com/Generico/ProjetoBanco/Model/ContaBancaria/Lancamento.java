@@ -1,16 +1,12 @@
 package com.Generico.ProjetoBanco.Model.ContaBancaria;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Lancamento;
-import com.Generico.ProjetoBanco.Model.Repositorys.PessoaRepository;
 import com.Generico.ProjetoBanco.Model.Usuarios.Pessoa;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.Date;
 
@@ -30,7 +26,7 @@ public class Lancamento {
         tipo = lancamento.tipo();
         lancamentoCategoria = categoria;
         lancamentoPessoa = pessoa;
-    }
+    };
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
@@ -45,6 +41,7 @@ public class Lancamento {
     @Column
     private String observacao;
     @Column
+    @Enumerated(EnumType.STRING)
     private TipoLancamento tipo;
     @ManyToOne
     @JoinColumn(name = "codigo_categoria")

@@ -5,7 +5,7 @@ create table Lancamento(
     data_pagamento date,
     valor int,
     observacao varchar(100),
-    tipo enum('RECEITA','DESPESA'),
+    tipo varchar(20),
     codigo_pessoa bigint,
     codigo_categoria bigint,
     foreign key (codigo_pessoa) references pessoa(id),

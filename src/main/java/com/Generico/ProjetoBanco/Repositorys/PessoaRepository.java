@@ -1,4 +1,4 @@
-package com.Generico.ProjetoBanco.Model.Repositorys;
+package com.Generico.ProjetoBanco.Repositorys;
 
 import com.Generico.ProjetoBanco.Model.Usuarios.Pessoa;
 import org.springframework.data.jpa.repository.JpaRepository;

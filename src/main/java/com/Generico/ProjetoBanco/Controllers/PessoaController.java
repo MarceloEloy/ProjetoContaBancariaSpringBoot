@@ -1,7 +1,7 @@
 package com.Generico.ProjetoBanco.Controllers;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Pessoa;
-import com.Generico.ProjetoBanco.Model.Repositorys.PessoaRepository;
+import com.Generico.ProjetoBanco.Repositorys.PessoaRepository;
 import com.Generico.ProjetoBanco.Model.Usuarios.Pessoa;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;

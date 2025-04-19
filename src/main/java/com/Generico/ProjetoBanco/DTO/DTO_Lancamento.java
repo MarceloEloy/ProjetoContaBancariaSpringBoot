@@ -1,5 +1,6 @@
 package com.Generico.ProjetoBanco.DTO;
 
+import com.Generico.ProjetoBanco.Model.ContaBancaria.Lancamento;
 import com.Generico.ProjetoBanco.Model.ContaBancaria.TipoLancamento;
 
 import java.sql.Date;
