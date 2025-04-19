@@ -1,19 +1,32 @@
 package com.Generico.ProjetoBanco.Model.ContaBancaria;
 
+import com.Generico.ProjetoBanco.DTO.DTO_Categoria;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "Categoria")
+@Table(name = "categoria")
+@AllArgsConstructor
+@NoArgsConstructor
 public class Categoria {
+    public Categoria(DTO_Categoria categoria){
+        nome = categoria.nome();
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @NotBlank
     @Column(name = "nome")
-    String nome;
+    private String nome;
+    @OneToMany(mappedBy = "lancamentoCategoria")
+    private Set<Lancamento> categoriaLancamentos = new HashSet<>();
 }

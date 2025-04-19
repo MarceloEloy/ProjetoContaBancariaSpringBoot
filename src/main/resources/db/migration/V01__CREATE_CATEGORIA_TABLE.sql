@@ -1,4 +1,4 @@
-create table Categoria(
-    id BIGINT PRIMARY KEY AUTO_INCREMENT,
-    nome varchar(30)
+create table categoria(
+    id bigint primary key auto_increment,
+    nome varchar(100)
 );

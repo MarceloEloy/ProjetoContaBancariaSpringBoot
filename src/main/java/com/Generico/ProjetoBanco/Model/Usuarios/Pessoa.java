@@ -1,14 +1,19 @@
 package com.Generico.ProjetoBanco.Model.Usuarios;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Pessoa;
+import com.Generico.ProjetoBanco.Model.ContaBancaria.Lancamento;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
-@Table(name = "Pessoa")
+@Table(name = "pessoa")
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,11 +26,15 @@ public class Pessoa {
     };
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Long id;
+    private Long id;
     @Column
-    Boolean ativo;
+    @NotNull
+    private Boolean ativo;
     @Column
-    String nome;
+    @NotNull
+    private String nome;
     @Embedded
-    Endereco endereco;
+    private Endereco endereco;
+    @OneToMany(mappedBy = "lancamentoPessoa")
+    private Set<Lancamento> pessoaLancamentos = new HashSet<>();
 }

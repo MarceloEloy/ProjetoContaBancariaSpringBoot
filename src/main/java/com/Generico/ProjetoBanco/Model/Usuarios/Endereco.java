@@ -3,6 +3,7 @@ package com.Generico.ProjetoBanco.Model.Usuarios;
 import com.Generico.ProjetoBanco.DTO.DTO_Endereco;
 import jakarta.persistence.Embeddable;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 
@@ -15,18 +16,26 @@ public class Endereco {
         numero = endereco.numero();
         bairro = endereco.bairro();
         cep = endereco.cep();
+        cidade = endereco.cidade();
         estado = endereco.estado();
         complemento = endereco.complemento();
     }
 
     String logradouro;
     @NotBlank
-    String numero;
+    @NotNull
+    private String numero;
     @NotBlank
-    String bairro;
+    @NotNull
+    private String bairro;
     @NotBlank
-    String cep;
+    @NotNull
+    private String cep;
     @NotBlank
-    String estado;
-    String complemento;
+    @NotNull
+    private String cidade;
+    @NotBlank
+    @NotNull
+    private String estado;
+    private String complemento;
 }

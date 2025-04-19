@@ -14,8 +14,7 @@ public class PessoaController {
     private PessoaRepository pessoaRepository;
     @PostMapping
     public void cadastrarPessoa(@RequestBody @Valid DTO_Pessoa pessoaDTO){
-        Pessoa pessoa = new Pessoa(pessoaDTO);
-        this.pessoaRepository.save(pessoa);
+        this.pessoaRepository.save(new Pessoa(pessoaDTO));
         System.out.println("POST REALIZADO!");
     }
 }

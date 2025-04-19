@@ -1,11 +1,12 @@
-create table Pessoa(
+create table pessoa(
     id bigint primary key auto_increment,
-    nome varchar(30),
+    nome varchar(100),
     ativo boolean,
-    logradouro varchar(50),
-    numero varchar(10),
+    logradouro varchar(100),
+    cidade varchar(100),
+    numero varchar(100),
     cep varchar(10),
-    estado varchar(30),
-    bairro varchar(30),
-    complemento varchar(30)
+    estado varchar(100),
+    bairro varchar(100),
+    complemento varchar(100)
 )

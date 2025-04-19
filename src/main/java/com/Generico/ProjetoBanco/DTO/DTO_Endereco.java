@@ -11,5 +11,7 @@ public record DTO_Endereco(String logradouro,
                 String cep,
         @NotBlank
                 String estado,
+        @NotBlank
+                String cidade,
         String complemento) {
 }
