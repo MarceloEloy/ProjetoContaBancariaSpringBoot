@@ -21,6 +21,7 @@ public class Endereco {
         complemento = endereco.complemento();
     }
 
+
     String logradouro;
     @NotBlank
     @NotNull

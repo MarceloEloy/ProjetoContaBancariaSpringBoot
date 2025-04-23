@@ -17,15 +17,17 @@ import java.sql.Date;
 @Getter
 @Setter
 public class Lancamento {
-    public Lancamento(DTO_Lancamento lancamento, Pessoa pessoa, Categoria categoria){
+
+
+    public Lancamento(DTO_Lancamento lancamento, Pessoa p, Categoria c){
         descricao = lancamento.descricao();
         data_pagamento = lancamento.data_pagamento();
         data_vencimento = lancamento.data_vencimento();
         valor = lancamento.valor();
         observacao = lancamento.observacao();
         tipo = lancamento.tipo();
-        lancamentoCategoria = categoria;
-        lancamentoPessoa = pessoa;
+        lancamentoPessoa = p;
+        lancamentoCategoria = c;
     };
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

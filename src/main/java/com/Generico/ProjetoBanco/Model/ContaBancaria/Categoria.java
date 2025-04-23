@@ -21,6 +21,7 @@ public class Categoria {
     public Categoria(DTO_Categoria categoria){
         nome = categoria.nome();
     }
+    public Categoria(DTO_Categoria categoria, Long codigo){};
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
