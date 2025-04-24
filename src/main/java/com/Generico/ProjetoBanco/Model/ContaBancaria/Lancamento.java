@@ -46,9 +46,9 @@ public class Lancamento {
     @Enumerated(EnumType.STRING)
     private TipoLancamento tipo;
     @ManyToOne
-    @JoinColumn(name = "codigo_categoria")
+    @JoinColumn(name = "codigo_pessoa")
     private Pessoa lancamentoPessoa;
     @ManyToOne
-    @JoinColumn(name = "codigo_pessoa")
+    @JoinColumn(name = "codigo_categoria")
     private Categoria lancamentoCategoria;
 }
