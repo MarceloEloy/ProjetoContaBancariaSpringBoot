@@ -32,22 +32,22 @@ public class LancamentoController {
 
 
     @PostMapping
-    public void cadastrarLancamento(@RequestBody DTO_Lancamento lancamentoDTO){
+    public ResponseEntity<Lancamento> cadastrarLancamento(@RequestBody DTO_Lancamento lancamentoDTO){
             Pessoa p = pessoaRepository.findById(lancamentoDTO.pessoa().codigo()).get();
             Categoria c = categoriaRepository.findById(lancamentoDTO.categoria().codigo()).get();
-            lancamentoRepository.save(new Lancamento(lancamentoDTO, p, c));
+            return ResponseEntity.ok(lancamentoRepository.save(new Lancamento(lancamentoDTO, p, c)));
     }
     @GetMapping
     public ResponseEntity<Page<Lancamento>> lisarLancamento(Pageable pageable){
         return ResponseEntity.ok(this.serviceLancamento.listAll(pageable));
     }
     @PutMapping
-    public void editarLancamento(@RequestParam Long id, @RequestBody DTO_Lancamento lancamentoDTO){
-        serviceLancamento.alterar(id, lancamentoDTO);
+    public ResponseEntity<Lancamento> editarLancamento(@RequestParam Long id, @RequestBody DTO_Lancamento lancamentoDTO){
+        return serviceLancamento.alterar(id, lancamentoDTO);
     }
     @DeleteMapping
-    public void deletarLancamento(@RequestParam Long id){
+    public ResponseEntity<Lancamento> deletarLancamento(@RequestParam Long id){
        this.lancamentoRepository.deleteById(id);
-       System.out.println("Lancamento Deletado com sucesso");
+       return ResponseEntity.noContent().build();
     }
 }

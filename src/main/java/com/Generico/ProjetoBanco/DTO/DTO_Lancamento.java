@@ -2,11 +2,14 @@ package com.Generico.ProjetoBanco.DTO;
 
 import com.Generico.ProjetoBanco.Model.ContaBancaria.Lancamento;
 import com.Generico.ProjetoBanco.Model.ContaBancaria.TipoLancamento;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
 import java.sql.Date;
 
 public record DTO_Lancamento(
+        @NotNull
+        @NotBlank
         String descricao,
         @NotNull
         Date data_vencimento,
@@ -16,6 +19,7 @@ public record DTO_Lancamento(
         String observacao,
         @NotNull
         TipoLancamento tipo,
+        @NotNull
         DTO_Pessoa pessoa,
         DTO_Categoria categoria
 ) {
