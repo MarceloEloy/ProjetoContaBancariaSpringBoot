@@ -15,6 +15,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.util.Date;
+
 @Transactional
 @RestController
 @RequestMapping("/Lancamento")
@@ -33,9 +36,7 @@ public class LancamentoController {
 
     @PostMapping
     public ResponseEntity<Lancamento> cadastrarLancamento(@RequestBody DTO_Lancamento lancamentoDTO){
-            Pessoa p = pessoaRepository.findById(lancamentoDTO.pessoa().codigo()).get();
-            Categoria c = categoriaRepository.findById(lancamentoDTO.categoria().codigo()).get();
-            return ResponseEntity.ok(lancamentoRepository.save(new Lancamento(lancamentoDTO, p, c)));
+            return ResponseEntity.ok(serviceLancamento.adicionar(lancamentoDTO));
     }
     @GetMapping
     public ResponseEntity<Page<Lancamento>> lisarLancamento(Pageable pageable){
@@ -46,8 +47,8 @@ public class LancamentoController {
         return serviceLancamento.alterar(id, lancamentoDTO);
     }
     @DeleteMapping
-    public ResponseEntity<Lancamento> deletarLancamento(@RequestParam Long id){
-       this.lancamentoRepository.deleteById(id);
+    public ResponseEntity<Lancamento> deletarLancamento(@RequestParam Long id) throws RuntimeException{
+       serviceLancamento.deletar(id);
        return ResponseEntity.noContent().build();
     }
 }

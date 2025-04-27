@@ -21,6 +21,7 @@ public record DTO_Lancamento(
         TipoLancamento tipo,
         @NotNull
         DTO_Pessoa pessoa,
+        @NotNull
         DTO_Categoria categoria
 ) {
 }

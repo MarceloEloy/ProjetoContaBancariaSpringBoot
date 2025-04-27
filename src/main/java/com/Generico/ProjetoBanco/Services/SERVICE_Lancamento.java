@@ -14,6 +14,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.util.Optional;
+
 @Service
 public class SERVICE_Lancamento {
     @Autowired
@@ -22,8 +27,20 @@ public class SERVICE_Lancamento {
     private PessoaRepository pessoaRepository;
     @Autowired
     private LancamentoRepository lancamentoRepository;
-    public void deletar(Long id){
-        lancamentoRepository.deleteById(id);
+    public void deletar(Long id) throws RuntimeException{
+        RuntimeException erroDeletar = new RuntimeException("Id de lançamento não encontrado!");
+        if (lancamentoRepository.findById(id).equals(Optional.empty())){
+            throw erroDeletar;
+        }
+        else {
+            lancamentoRepository.deleteById(id);
+            System.out.println( LocalDate.now() + " " + LocalTime.now() + " - [HTTP_METHOD_DELETE] : ID[" + id + "] - DELETED");
+        }
+    }
+    public Lancamento adicionar(DTO_Lancamento lancamentoDTO){
+        Pessoa p = pessoaRepository.findById(lancamentoDTO.pessoa().codigo()).get();
+        Categoria c = categoriaRepository.findById(lancamentoDTO.categoria().codigo()).get();
+        return lancamentoRepository.save(new Lancamento(lancamentoDTO, p, c));
     }
 
     public Page<Lancamento> listAll(Pageable pageable){
