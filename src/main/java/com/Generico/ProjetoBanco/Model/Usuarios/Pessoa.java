@@ -2,6 +2,7 @@ package com.Generico.ProjetoBanco.Model.Usuarios;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Pessoa;
 import com.Generico.ProjetoBanco.Model.ContaBancaria.Lancamento;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -40,5 +41,6 @@ public class Pessoa {
     @Embedded
     private Endereco endereco;
     @OneToMany(mappedBy = "lancamentoPessoa")
+    @JsonIgnore
     private Set<Lancamento> pessoaLancamentos = new HashSet<>();
 }

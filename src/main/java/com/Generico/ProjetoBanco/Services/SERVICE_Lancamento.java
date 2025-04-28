@@ -9,6 +9,7 @@ import com.Generico.ProjetoBanco.Repositorys.LancamentoRepository;
 import com.Generico.ProjetoBanco.Repositorys.PessoaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -43,8 +44,8 @@ public class SERVICE_Lancamento {
         return lancamentoRepository.save(new Lancamento(lancamentoDTO, p, c));
     }
 
-    public Page<Lancamento> listAll(Pageable pageable){
-        return lancamentoRepository.findAll(pageable);
+    public Page<Lancamento> listAll(int page, int size){
+        return lancamentoRepository.findAll(PageRequest.of(page, size));
     }
     public ResponseEntity<Lancamento> alterar(Long id, DTO_Lancamento lancamentoDTO){
         Lancamento lancamento = lancamentoRepository.findById(id).get();

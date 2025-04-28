@@ -2,6 +2,7 @@ package com.Generico.ProjetoBanco.Model.ContaBancaria;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Lancamento;
 import com.Generico.ProjetoBanco.Model.Usuarios.Pessoa;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -47,8 +48,10 @@ public class Lancamento {
     private TipoLancamento tipo;
     @ManyToOne
     @JoinColumn(name = "codigo_pessoa")
+    @JsonBackReference
     private Pessoa lancamentoPessoa;
     @ManyToOne
     @JoinColumn(name = "codigo_categoria")
+    @JsonBackReference
     private Categoria lancamentoCategoria;
 }

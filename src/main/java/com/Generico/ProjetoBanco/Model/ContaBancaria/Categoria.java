@@ -1,6 +1,7 @@
 package com.Generico.ProjetoBanco.Model.ContaBancaria;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Categoria;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -29,5 +30,6 @@ public class Categoria {
     @Column(name = "nome")
     private String nome;
     @OneToMany(mappedBy = "lancamentoCategoria")
+    @JsonIgnore
     private Set<Lancamento> categoriaLancamentos = new HashSet<>();
 }

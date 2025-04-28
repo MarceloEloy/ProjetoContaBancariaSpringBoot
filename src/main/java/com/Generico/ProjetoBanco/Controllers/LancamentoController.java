@@ -39,8 +39,9 @@ public class LancamentoController {
             return ResponseEntity.ok(serviceLancamento.adicionar(lancamentoDTO));
     }
     @GetMapping
-    public ResponseEntity<Page<Lancamento>> lisarLancamento(Pageable pageable){
-        return ResponseEntity.ok(this.serviceLancamento.listAll(pageable));
+    public ResponseEntity<Page<Lancamento>> lisarLancamento(@RequestParam int page, @RequestParam int size){
+
+        return ResponseEntity.ok(this.serviceLancamento.listAll(page, size));
     }
     @PutMapping
     public ResponseEntity<Lancamento> editarLancamento(@RequestParam Long id, @RequestBody DTO_Lancamento lancamentoDTO){
