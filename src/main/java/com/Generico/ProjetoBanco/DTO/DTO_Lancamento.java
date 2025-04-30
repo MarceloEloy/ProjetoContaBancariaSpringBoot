@@ -8,6 +8,7 @@ import jakarta.validation.constraints.NotNull;
 import java.sql.Date;
 
 public record DTO_Lancamento(
+        Long id,
         @NotNull
         @NotBlank
         String descricao,
@@ -24,4 +25,7 @@ public record DTO_Lancamento(
         @NotNull
         DTO_Categoria categoria
 ) {
+        public DTO_Lancamento(Lancamento lancamento){
+                this(lancamento.getId(), lancamento.getDescricao(), lancamento.getData_vencimento(), lancamento.getData_pagamento(), lancamento.getValor(), lancamento.getObservacao(), lancamento.getTipo(), new DTO_Pessoa(lancamento.getLancamentoPessoa()), new DTO_Categoria(lancamento.getLancamentoCategoria()));
+        }
 }

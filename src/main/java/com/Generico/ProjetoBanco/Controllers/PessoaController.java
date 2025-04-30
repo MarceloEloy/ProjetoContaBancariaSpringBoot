@@ -7,6 +7,8 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping(path = "/Pessoas")
 public class PessoaController {
@@ -16,5 +18,9 @@ public class PessoaController {
     public void cadastrarPessoa(@RequestBody DTO_Pessoa pessoaDTO){
         this.pessoaRepository.save(new Pessoa(pessoaDTO));
         System.out.println("POST REALIZADO!");
+    }
+    @GetMapping
+    public List<Pessoa> listarPessoas(){
+        return pessoaRepository.findAll();
     }
 }

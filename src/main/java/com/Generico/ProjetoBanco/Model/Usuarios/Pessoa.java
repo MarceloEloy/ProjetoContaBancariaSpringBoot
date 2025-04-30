@@ -41,6 +41,5 @@ public class Pessoa {
     @Embedded
     private Endereco endereco;
     @OneToMany(mappedBy = "lancamentoPessoa")
-    @JsonIgnore
     private Set<Lancamento> pessoaLancamentos = new HashSet<>();
 }

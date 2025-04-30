@@ -30,6 +30,5 @@ public class Categoria {
     @Column(name = "nome")
     private String nome;
     @OneToMany(mappedBy = "lancamentoCategoria")
-    @JsonIgnore
     private Set<Lancamento> categoriaLancamentos = new HashSet<>();
 }

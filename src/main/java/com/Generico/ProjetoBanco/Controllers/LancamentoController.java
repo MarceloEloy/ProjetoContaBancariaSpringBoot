@@ -22,16 +22,8 @@ import java.util.Date;
 @RestController
 @RequestMapping("/Lancamento")
 public class LancamentoController {
-    private final SERVICE_Lancamento serviceLancamento;
-    public LancamentoController(SERVICE_Lancamento serviceLancamento) {
-        this.serviceLancamento = serviceLancamento;
-    }
     @Autowired
-    LancamentoRepository lancamentoRepository;
-    @Autowired
-    PessoaRepository pessoaRepository;
-    @Autowired
-    CategoriaRepository categoriaRepository;
+    SERVICE_Lancamento serviceLancamento;
 
 
     @PostMapping
@@ -39,7 +31,7 @@ public class LancamentoController {
             return ResponseEntity.ok(serviceLancamento.adicionar(lancamentoDTO));
     }
     @GetMapping
-    public ResponseEntity<Page<Lancamento>> lisarLancamento(@RequestParam int page, @RequestParam int size){
+    public ResponseEntity<Page<DTO_Lancamento>> lisarLancamento(@RequestParam int page, @RequestParam int size){
 
         return ResponseEntity.ok(this.serviceLancamento.listAll(page, size));
     }

@@ -16,4 +16,7 @@ public record DTO_Pessoa(Long codigo,
                          Boolean ativo,
                          @NotNull
                          DTO_Endereco endereco) {
+    public DTO_Pessoa(Pessoa pessoa) {
+        this(pessoa.getId(), pessoa.getNome(), pessoa.getAtivo(), new DTO_Endereco(pessoa.getEndereco()));
+    }
 }

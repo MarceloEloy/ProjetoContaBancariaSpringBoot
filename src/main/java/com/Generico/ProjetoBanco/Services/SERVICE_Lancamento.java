@@ -44,8 +44,9 @@ public class SERVICE_Lancamento {
         return lancamentoRepository.save(new Lancamento(lancamentoDTO, p, c));
     }
 
-    public Page<Lancamento> listAll(int page, int size){
-        return lancamentoRepository.findAll(PageRequest.of(page, size));
+    public Page<DTO_Lancamento> listAll(int page, int size){
+        Page<Lancamento> lancamentosPage = lancamentoRepository.findAll(PageRequest.of(page -1, size));
+        return lancamentosPage.map(DTO_Lancamento::new);
     }
     public ResponseEntity<Lancamento> alterar(Long id, DTO_Lancamento lancamentoDTO){
         Lancamento lancamento = lancamentoRepository.findById(id).get();
