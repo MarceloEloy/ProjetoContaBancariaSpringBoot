@@ -2,7 +2,6 @@ package com.Generico.ProjetoBanco.Model.Usuarios;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Pessoa;
 import com.Generico.ProjetoBanco.Model.ContaBancaria.Lancamento;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

@@ -58,9 +58,6 @@ public class SERVICE_Lancamento {
             Categoria c = this.categoriaRepository.findById(lancamentoDTO.categoria().codigo()).get();
             lancamento.setLancamentoCategoria(c);
         }
-        else {
-            System.out.println("Categoria nula");
-        }
         if (lancamentoDTO.data_pagamento() != null){
             lancamento.setData_pagamento(lancamentoDTO.data_pagamento());
         }
