@@ -9,6 +9,7 @@ import com.Generico.ProjetoBanco.Repositorys.PessoaRepository;
 import com.Generico.ProjetoBanco.Model.Usuarios.Pessoa;
 import com.Generico.ProjetoBanco.Services.SERVICE_Lancamento;
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,13 +28,17 @@ public class LancamentoController {
 
 
     @PostMapping
-    public ResponseEntity<Lancamento> cadastrarLancamento(@RequestBody DTO_Lancamento lancamentoDTO){
+    public ResponseEntity<Lancamento> cadastrarLancamento(@RequestBody @Valid DTO_Lancamento lancamentoDTO){
             return ResponseEntity.ok(serviceLancamento.adicionar(lancamentoDTO));
     }
     @GetMapping
     public ResponseEntity<Page<DTO_Lancamento>> lisarLancamento(@RequestParam int page, @RequestParam int size){
 
         return ResponseEntity.ok(this.serviceLancamento.listAll(page, size));
+    }
+    @GetMapping("{id}")
+    public ResponseEntity<Lancamento> acharUnico(@PathVariable Long id){
+        return  serviceLancamento.acharUnico(id);
     }
     @PutMapping
     public ResponseEntity<Lancamento> editarLancamento(@RequestParam Long id, @RequestBody DTO_Lancamento lancamentoDTO){

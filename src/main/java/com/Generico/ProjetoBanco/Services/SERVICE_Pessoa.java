@@ -18,6 +18,9 @@ public class SERVICE_Pessoa {
     public ResponseEntity<Pessoa> adicionar(DTO_Pessoa dtoPessoa){
         return ResponseEntity.ok(pessoaRepository.save(new Pessoa(dtoPessoa)));
     }
+    public ResponseEntity<Pessoa> acharUnico(Long id){
+        return ResponseEntity.ok().body(pessoaRepository.findById(id).get());
+    }
     public ResponseEntity<Page<Pessoa>> listar(int page, int size){
         return ResponseEntity.ok(pessoaRepository.findAll(PageRequest.of(page -1, size)));
     }

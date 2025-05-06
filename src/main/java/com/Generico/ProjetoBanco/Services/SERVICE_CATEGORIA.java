@@ -9,12 +9,17 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SERVICE_CATEGORIA {
     @Autowired
     private CategoriaRepository categoriaRepository;
     public ResponseEntity<Page<Categoria>> listar(int page, int size){
         return ResponseEntity.ok(categoriaRepository.findAll(PageRequest.of(page -1, size)));
+    }
+    public ResponseEntity<Categoria> acharUnico(Long id){
+        return ResponseEntity.ok().body(categoriaRepository.findById(id).get());
     }
     public ResponseEntity<Categoria> deletar(Long id){
         categoriaRepository.deleteById(id);

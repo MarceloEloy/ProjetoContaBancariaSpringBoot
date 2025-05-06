@@ -2,8 +2,10 @@ package com.Generico.ProjetoBanco.Controllers;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Categoria;
 import com.Generico.ProjetoBanco.Model.ContaBancaria.Categoria;
+import com.Generico.ProjetoBanco.Model.ContaBancaria.Lancamento;
 import com.Generico.ProjetoBanco.Repositorys.CategoriaRepository;
 import com.Generico.ProjetoBanco.Services.SERVICE_CATEGORIA;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
@@ -15,8 +17,12 @@ public class CategoriaController {
     @Autowired
     SERVICE_CATEGORIA serviceCategoria;
     @PostMapping
-    public ResponseEntity<Categoria> cadastrarCategoria(@RequestBody DTO_Categoria categoriaDTO){
+    public ResponseEntity<Categoria> cadastrarCategoria(@RequestBody @Valid DTO_Categoria categoriaDTO){
         return serviceCategoria.adicionar(categoriaDTO);
+    }
+    @GetMapping("{id}")
+    public ResponseEntity<Categoria> acharUnico(@PathVariable Long id){
+        return  serviceCategoria.acharUnico(id);
     }
     @GetMapping
     public ResponseEntity<Page<Categoria>> listarCategoria(@RequestParam int page, @RequestParam int size){

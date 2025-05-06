@@ -43,6 +43,9 @@ public class SERVICE_Lancamento {
         Categoria c = categoriaRepository.findById(lancamentoDTO.categoria().codigo()).get();
         return lancamentoRepository.save(new Lancamento(lancamentoDTO, p, c));
     }
+    public ResponseEntity<Lancamento> acharUnico(Long id){
+        return ResponseEntity.ok().body(lancamentoRepository.findById(id).get());
+    }
 
     public Page<DTO_Lancamento> listAll(int page, int size){
         Page<Lancamento> lancamentosPage = lancamentoRepository.findAll(PageRequest.of(page -1, size));
