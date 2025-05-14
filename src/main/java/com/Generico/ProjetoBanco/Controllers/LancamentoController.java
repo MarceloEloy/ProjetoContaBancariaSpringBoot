@@ -16,6 +16,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -28,8 +30,8 @@ public class LancamentoController {
 
 
     @PostMapping
-    public ResponseEntity<Lancamento> cadastrarLancamento(@RequestBody @Valid DTO_Lancamento lancamentoDTO){
-            return ResponseEntity.ok(serviceLancamento.adicionar(lancamentoDTO));
+    public ResponseEntity<Lancamento> cadastrarLancamento(@RequestBody @Valid DTO_Lancamento lancamentoDTO) throws URISyntaxException {
+            return ResponseEntity.created(new URI("/Lancamento")).body(serviceLancamento.adicionar(lancamentoDTO));
     }
     @GetMapping
     public ResponseEntity<Page<DTO_Lancamento>> lisarLancamento(@RequestParam int page, @RequestParam int size){

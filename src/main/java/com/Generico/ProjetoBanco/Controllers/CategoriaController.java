@@ -11,13 +11,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
+
 @RestController
 @RequestMapping("/Categoria")
 public class CategoriaController {
     @Autowired
     SERVICE_CATEGORIA serviceCategoria;
     @PostMapping
-    public ResponseEntity<Categoria> cadastrarCategoria(@RequestBody @Valid DTO_Categoria categoriaDTO){
+    public ResponseEntity<Categoria> cadastrarCategoria(@RequestBody @Valid DTO_Categoria categoriaDTO) throws URISyntaxException {
         return serviceCategoria.adicionar(categoriaDTO);
     }
     @GetMapping("{id}")

@@ -11,12 +11,15 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 @Service
 public class SERVICE_Pessoa {
     @Autowired
     private PessoaRepository pessoaRepository;
-    public ResponseEntity<Pessoa> adicionar(DTO_Pessoa dtoPessoa){
-        return ResponseEntity.ok(pessoaRepository.save(new Pessoa(dtoPessoa)));
+    public ResponseEntity<Pessoa> adicionar(DTO_Pessoa dtoPessoa) throws URISyntaxException {
+        return ResponseEntity.created(new URI("/Pessoa")).body(pessoaRepository.save(new Pessoa(dtoPessoa)));
     }
     public ResponseEntity<Pessoa> acharUnico(Long id){
         return ResponseEntity.ok().body(pessoaRepository.findById(id).get());

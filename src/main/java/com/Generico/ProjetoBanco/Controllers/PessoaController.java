@@ -11,6 +11,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.URISyntaxException;
+
 @RestController
 @RequestMapping(path = "/Pessoa")
 public class PessoaController {
@@ -19,7 +21,7 @@ public class PessoaController {
     @Autowired
     private PessoaRepository pessoaRepository;
     @PostMapping
-    public ResponseEntity<Pessoa> cadastrarPessoa(@RequestBody @Valid DTO_Pessoa pessoaDTO){
+    public ResponseEntity<Pessoa> cadastrarPessoa(@RequestBody @Valid DTO_Pessoa pessoaDTO) throws URISyntaxException {
         return servicePessoa.adicionar(pessoaDTO);
     }
     @GetMapping("{id}")

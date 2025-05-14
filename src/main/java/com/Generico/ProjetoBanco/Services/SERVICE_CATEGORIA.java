@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @Service
@@ -32,7 +34,7 @@ public class SERVICE_CATEGORIA {
         }
         return ResponseEntity.ok(categoriaRepository.save(c));
     }
-    public ResponseEntity<Categoria> adicionar(DTO_Categoria dtoCategoria){
-        return ResponseEntity.ok(categoriaRepository.save(new Categoria(dtoCategoria)));
+    public ResponseEntity<Categoria> adicionar(DTO_Categoria dtoCategoria) throws URISyntaxException {
+        return ResponseEntity.created(new URI("/Categoria")).body(categoriaRepository.save(new Categoria(dtoCategoria)));
     }
 }
