@@ -1,0 +1,21 @@
+package com.Generico.ProjetoBanco.Services;
+
+import com.Generico.ProjetoBanco.Repositorys.LoginRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+@Service
+public class SERVICE_Login implements UserDetailsService {
+
+    @Autowired
+    LoginRepository loginRepository;
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        System.out.println(loginRepository.findByLogin(username).getPassword());
+        return this.loginRepository.findByLogin(username);
+    }
+}
