@@ -1,6 +1,7 @@
 package com.Generico.ProjetoBanco.Controllers;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Login;
+import com.Generico.ProjetoBanco.Infraestrutura.SERVICE_Token;
 import com.Generico.ProjetoBanco.Model.Usuarios.Login_Pessoa;
 import com.Generico.ProjetoBanco.Repositorys.LoginRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class LoginController {
 
     @Autowired
+    SERVICE_Token tokenService;
+
+    @Autowired
     AuthenticationManager authenticationManager;
 
     @Autowired
@@ -29,12 +33,9 @@ public class LoginController {
     @PostMapping
     @RequestMapping(path = "/log")
     public ResponseEntity login(@RequestBody DTO_Login login){
-        System.out.println("problema");
         var usernamePassword = new UsernamePasswordAuthenticationToken(login.login(), login.senha());
-        System.out.println(usernamePassword.getName());
-        authenticationManager.authenticate(usernamePassword);
-        System.out.println("problema3");
-        return ResponseEntity.ok().build();
+        var auth = authenticationManager.authenticate(usernamePassword);
+        return ResponseEntity.ok(tokenService.generateToken((Login_Pessoa) auth.getPrincipal()));
     }
 
     @PostMapping

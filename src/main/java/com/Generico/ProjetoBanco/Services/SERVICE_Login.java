@@ -15,7 +15,6 @@ public class SERVICE_Login implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        System.out.println(loginRepository.findByLogin(username).getPassword());
         return this.loginRepository.findByLogin(username);
     }
 }
