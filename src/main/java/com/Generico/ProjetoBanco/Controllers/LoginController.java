@@ -1,6 +1,7 @@
 package com.Generico.ProjetoBanco.Controllers;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Login;
+import com.Generico.ProjetoBanco.DTO.DTO_RESPONSE_Login;
 import com.Generico.ProjetoBanco.Infraestrutura.SERVICE_Token;
 import com.Generico.ProjetoBanco.Model.Usuarios.Login_Pessoa;
 import com.Generico.ProjetoBanco.Repositorys.LoginRepository;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.token.TokenService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,6 +26,7 @@ public class LoginController {
     @Autowired
     AuthenticationManager authenticationManager;
 
+
     @Autowired
     PasswordEncoder passwordEncoder;
 
@@ -35,7 +38,8 @@ public class LoginController {
     public ResponseEntity login(@RequestBody DTO_Login login){
         var usernamePassword = new UsernamePasswordAuthenticationToken(login.login(), login.senha());
         var auth = authenticationManager.authenticate(usernamePassword);
-        return ResponseEntity.ok(tokenService.generateToken((Login_Pessoa) auth.getPrincipal()));
+        var token = tokenService.generateToken((Login_Pessoa) auth.getPrincipal());
+        return ResponseEntity.ok(new DTO_RESPONSE_Login(token));
     }
 
     @PostMapping
