@@ -20,7 +20,14 @@ public class CategoriaController {
     SERVICE_CATEGORIA serviceCategoria;
     @PostMapping
     public ResponseEntity<Categoria> cadastrarCategoria(@RequestBody @Valid DTO_Categoria categoriaDTO) throws URISyntaxException {
+        try {
+            return serviceCategoria.adicionar(categoriaDTO);
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
         return serviceCategoria.adicionar(categoriaDTO);
+
     }
     @GetMapping("{id}")
     public ResponseEntity<Categoria> acharUnico(@PathVariable Long id){

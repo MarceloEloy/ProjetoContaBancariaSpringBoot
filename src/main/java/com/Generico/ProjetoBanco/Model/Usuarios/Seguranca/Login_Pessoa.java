@@ -1,4 +1,4 @@
-package com.Generico.ProjetoBanco.Model.Usuarios;
+package com.Generico.ProjetoBanco.Model.Usuarios.Seguranca;
 
 import com.Generico.ProjetoBanco.DTO.DTO_Login;
 import jakarta.persistence.*;
@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
@@ -35,14 +36,26 @@ public class Login_Pessoa implements UserDetails {
     @Column
     String senha;
 
-    public Login_Pessoa(String login, String senha) {
+    @Enumerated(EnumType.STRING)
+    @Column(name = "roles")
+    Roles roles;
+
+    public Login_Pessoa(String login, String senha, Roles roles) {
         this.login = login;
         this.senha = senha;
+        this.roles = roles;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return List.of();
+        if (roles.equals(Roles.ADMINISTRADOR)){
+            return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_BASIC"));
+        }
+        if (roles.equals(Roles.BASICO)) {
+            return List.of(new SimpleGrantedAuthority("ROLE_BASIC"));
+        }
+        System.out.println(this.roles.name());
+        return null;
     }
 
     @Override

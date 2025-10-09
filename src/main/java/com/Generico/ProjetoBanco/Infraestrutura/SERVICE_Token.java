@@ -1,6 +1,6 @@
 package com.Generico.ProjetoBanco.Infraestrutura;
 
-import com.Generico.ProjetoBanco.Model.Usuarios.Login_Pessoa;
+import com.Generico.ProjetoBanco.Model.Usuarios.Seguranca.Login_Pessoa;
 import com.auth0.jwt.JWT;
 import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTCreationException;

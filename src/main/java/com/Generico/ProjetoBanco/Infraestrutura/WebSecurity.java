@@ -29,7 +29,17 @@ public class WebSecurity {
              .sessionManagement(maager -> maager.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
              .authorizeHttpRequests(auth -> auth.
                      requestMatchers(HttpMethod.POST, "/Login/log").permitAll()
-                     .requestMatchers(HttpMethod.POST, "/Login/reg").permitAll())
+                     .requestMatchers(HttpMethod.POST, "/Login/reg").permitAll()
+                     .requestMatchers(HttpMethod.POST, "/Categoria").hasRole("ADMIN")
+                     .requestMatchers(HttpMethod.POST, "/Lancamento").hasRole("ADMIN")
+                     .requestMatchers(HttpMethod.POST, "/Pessoa").hasRole("ADMIN")
+                     .requestMatchers(HttpMethod.PUT, "/Categoria").hasRole("ADMIN")
+                     .requestMatchers(HttpMethod.PUT, "/Lancamento").hasRole("ADMIN")
+                     .requestMatchers(HttpMethod.PUT, "/Pessoa").hasRole("ADMIN")
+                     .requestMatchers(HttpMethod.DELETE, "/Categoria").hasRole("ADMIN")
+                     .requestMatchers(HttpMethod.DELETE, "/Lancamento").hasRole("ADMIN")
+                     .requestMatchers(HttpMethod.DELETE, "/Pessoa").hasRole("ADMIN")
+                     .anyRequest().hasRole("BASIC"))
              .addFilterBefore(securityFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
