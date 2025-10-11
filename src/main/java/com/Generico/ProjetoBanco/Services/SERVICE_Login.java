@@ -14,7 +14,7 @@ public class SERVICE_Login implements UserDetailsService {
     LoginRepository loginRepository;
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return this.loginRepository.findByLogin(username);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return this.loginRepository.findByEmail(email);
     }
 }

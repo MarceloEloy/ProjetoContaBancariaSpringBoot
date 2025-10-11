@@ -6,6 +6,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface LoginRepository extends JpaRepository<Login_Pessoa, Long>, PagingAndSortingRepository<Login_Pessoa, Long> {
 
-    Login_Pessoa findByLogin(String username);
+    Login_Pessoa findByEmail(String email);
 
 }

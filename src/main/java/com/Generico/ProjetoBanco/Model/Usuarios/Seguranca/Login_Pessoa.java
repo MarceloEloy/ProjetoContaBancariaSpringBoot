@@ -22,7 +22,7 @@ public class Login_Pessoa implements UserDetails {
         if (login.id() != null){
             this.id = login.id();
         }
-        this.login = login.login();
+        this.email = login.email();
         this.senha = login.senha();
     }
 
@@ -31,7 +31,7 @@ public class Login_Pessoa implements UserDetails {
     Long id;
 
     @Column
-    String login;
+    String email;
 
     @Column
     String senha;
@@ -40,8 +40,8 @@ public class Login_Pessoa implements UserDetails {
     @Column(name = "roles")
     Roles roles;
 
-    public Login_Pessoa(String login, String senha, Roles roles) {
-        this.login = login;
+    public Login_Pessoa(String email, String senha, Roles roles) {
+        this.email = email;
         this.senha = senha;
         this.roles = roles;
     }
@@ -65,6 +65,6 @@ public class Login_Pessoa implements UserDetails {
 
     @Override
     public String getUsername() {
-        return this.login;
+        return this.email;
     }
 }
