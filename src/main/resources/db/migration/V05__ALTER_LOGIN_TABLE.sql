@@ -1,2 +1,2 @@
 alter table Logins
-    add roles ENUM('UNUSED', 'ADMINISTRADOR', 'BASICO')
+    add roles ENUM('ADMINISTRADOR', 'BASICO')

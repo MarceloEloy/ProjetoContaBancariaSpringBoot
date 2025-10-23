@@ -1,4 +1,4 @@
-package com.Generico.ProjetoBanco.Infraestrutura;
+package com.Generico.ProjetoBanco.Infraestrutura.Security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -30,6 +30,7 @@ public class WebSecurity {
              .authorizeHttpRequests(auth -> auth.
                      requestMatchers(HttpMethod.POST, "/Login/log").permitAll()
                      .requestMatchers(HttpMethod.POST, "/Login/reg").permitAll()
+                     .requestMatchers("/v3/api-docs/**", "/swagger-ui.html", "/swagger-ui/**").permitAll()
                      .requestMatchers(HttpMethod.POST, "/Categoria").hasRole("ADMIN")
                      .requestMatchers(HttpMethod.POST, "/Lancamento").hasRole("ADMIN")
                      .requestMatchers(HttpMethod.POST, "/Pessoa").hasRole("ADMIN")
@@ -54,6 +55,8 @@ public class WebSecurity {
     PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+
 
 
 

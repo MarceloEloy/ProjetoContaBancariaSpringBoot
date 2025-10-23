@@ -1,4 +1,4 @@
-package com.Generico.ProjetoBanco.Infraestrutura;
+package com.Generico.ProjetoBanco.Infraestrutura.TokenSystem;
 
 import com.Generico.ProjetoBanco.Model.Usuarios.Seguranca.Login_Pessoa;
 import com.auth0.jwt.JWT;

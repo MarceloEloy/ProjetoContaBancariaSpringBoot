@@ -5,6 +5,7 @@ import com.Generico.ProjetoBanco.Model.ContaBancaria.Categoria;
 import com.Generico.ProjetoBanco.Model.ContaBancaria.Lancamento;
 import com.Generico.ProjetoBanco.Repositorys.CategoriaRepository;
 import com.Generico.ProjetoBanco.Services.SERVICE_CATEGORIA;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -15,6 +16,7 @@ import java.net.URISyntaxException;
 
 @RestController
 @RequestMapping("/Categoria")
+@SecurityRequirement(name = "bearer-key")
 public class CategoriaController {
     @Autowired
     SERVICE_CATEGORIA serviceCategoria;

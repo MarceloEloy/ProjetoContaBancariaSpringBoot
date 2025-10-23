@@ -8,6 +8,8 @@ import com.Generico.ProjetoBanco.Repositorys.LancamentoRepository;
 import com.Generico.ProjetoBanco.Repositorys.PessoaRepository;
 import com.Generico.ProjetoBanco.Model.Usuarios.Pessoa;
 import com.Generico.ProjetoBanco.Services.SERVICE_Lancamento;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +24,10 @@ import java.time.LocalDate;
 import java.util.Date;
 
 @Transactional
+@Tag(name = "Lançamentos", description = "Constrolador de Lançamentos")
 @RestController
 @RequestMapping("/Lancamento")
+@SecurityRequirement(name = "bearer-key")
 public class LancamentoController {
     @Autowired
     SERVICE_Lancamento serviceLancamento;

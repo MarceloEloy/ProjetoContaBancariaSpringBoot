@@ -1,9 +1,9 @@
-package com.Generico.ProjetoBanco.Infraestrutura;
+package com.Generico.ProjetoBanco.Infraestrutura.Security;
 
+import com.Generico.ProjetoBanco.Infraestrutura.TokenSystem.SERVICE_Token;
 import com.Generico.ProjetoBanco.Repositorys.LoginRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +29,6 @@ public class SecurityFilter extends OncePerRequestFilter {
         var token = this.recoverToken(request);
         if (token != null && !request.getRequestURI().equals("/Login/reg") && !request.getRequestURI().equals("/Login/log")){
             var subject = tokenService.validateToken(token);
-            System.out.println(repository.findByEmail(subject).getUsername() + " " + repository.findByEmail(subject).getPassword());
             UserDetails user = repository.findByEmail(subject);
 
             var authentication = new UsernamePasswordAuthenticationToken(user, null, user.getAuthorities());
