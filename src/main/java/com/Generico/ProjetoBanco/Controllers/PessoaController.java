@@ -6,6 +6,7 @@ import com.Generico.ProjetoBanco.Repositorys.PessoaRepository;
 import com.Generico.ProjetoBanco.Model.Usuarios.Pessoa;
 import com.Generico.ProjetoBanco.Services.SERVICE_Pessoa;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
@@ -25,6 +26,7 @@ public class PessoaController {
     public SERVICE_Pessoa servicePessoa;
     @Autowired
     private PessoaRepository pessoaRepository;
+    @Operation(summary = "Operação para cadastrar pessoas", responses = @ApiResponse(responseCode = "200", description = "Registra uma pessoa"))
     @PostMapping
     public ResponseEntity<Pessoa> cadastrarPessoa(@RequestBody @Valid DTO_Pessoa pessoaDTO) throws URISyntaxException {
         return servicePessoa.adicionar(pessoaDTO);

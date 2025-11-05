@@ -8,6 +8,7 @@ import com.Generico.ProjetoBanco.Repositorys.LancamentoRepository;
 import com.Generico.ProjetoBanco.Repositorys.PessoaRepository;
 import com.Generico.ProjetoBanco.Model.Usuarios.Pessoa;
 import com.Generico.ProjetoBanco.Services.SERVICE_Lancamento;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.transaction.Transactional;
@@ -33,15 +34,18 @@ public class LancamentoController {
     SERVICE_Lancamento serviceLancamento;
 
 
+    @Operation(summary = "Posta Lançamentos no banco")
     @PostMapping
     public ResponseEntity<Lancamento> cadastrarLancamento(@RequestBody @Valid DTO_Lancamento lancamentoDTO) throws URISyntaxException {
             return ResponseEntity.created(new URI("/Lancamento")).body(serviceLancamento.adicionar(lancamentoDTO));
     }
+    @Operation(summary = "Mostra uma lista personalizavel de lançamentos")
     @GetMapping
     public ResponseEntity<Page<DTO_Lancamento>> lisarLancamento(@RequestParam int page, @RequestParam int size){
 
         return ResponseEntity.ok(this.serviceLancamento.listAll(page, size));
     }
+    @Operation(summary = "Mostra um único lançamento mapeado por id")
     @GetMapping("{id}")
     public ResponseEntity<Lancamento> acharUnico(@PathVariable Long id){
         return  serviceLancamento.acharUnico(id);
@@ -50,6 +54,7 @@ public class LancamentoController {
     public ResponseEntity<Lancamento> editarLancamento(@RequestParam Long id, @RequestBody DTO_Lancamento lancamentoDTO){
         return serviceLancamento.alterar(id, lancamentoDTO);
     }
+    @Operation(summary = "Deleta lançamento mapeado por id")
     @DeleteMapping
     public ResponseEntity<Lancamento> deletarLancamento(@RequestParam Long id) throws RuntimeException{
        serviceLancamento.deletar(id);

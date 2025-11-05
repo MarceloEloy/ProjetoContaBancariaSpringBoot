@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Logins", description = "Controlador de login de usuários com JWT e ")
+@Tag(name = "Logins", description = "Controlador de login de usuários com JWT e oAuth")
 @RestController
 @RequestMapping(path = "/Login")
 public class LoginController {
@@ -55,7 +55,6 @@ public class LoginController {
     }
 
     @Operation(summary = "Registra logins de usuários", responses = {@ApiResponse(responseCode = "200", description = "Registra um usuário com email, senha e roles")})
-
     @PostMapping
     @RequestMapping(path = "/reg")
     public ResponseEntity<Login_Pessoa> register(@RequestBody @Valid DTO_Login login){
